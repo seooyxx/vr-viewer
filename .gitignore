@@ -1,0 +1,5 @@
+*.pyc
+__pycache__/
+__pycache__/main.cpython-310.pyc
+data/*_mlp.json
+.env
