@@ -17,7 +17,7 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-@app.get("/")
+@app.get("/main")
 async def read_index():
     return FileResponse('index.html')
 
@@ -26,7 +26,7 @@ async def read_viewer():
     return FileResponse('static/viewer.html')
 
 @app.get("/editor")
-async def read_viewer():
+async def read_editor():
     return FileResponse('static/editor.html')
 
 
