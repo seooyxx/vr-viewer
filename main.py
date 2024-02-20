@@ -42,6 +42,11 @@ class SaveRequest(BaseModel):
     sceneInfo: SceneInfo
     avatarsInfo: List[AvatarInfo]
 
+@app.get("/")
+def healthcheck():
+    return {"status":"healthy"}
+
+
 
 @app.post("/care-recipient")
 async def receive_care_recipient_data(request: CareRecipientRequest):
