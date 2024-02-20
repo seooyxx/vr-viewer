@@ -1,6 +1,7 @@
 import os
 import json
 import urllib.request
+import logging
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
@@ -19,31 +20,13 @@ app.add_middleware(
     allow_headers=["*"], 
 )
 
-class ObjectData(BaseModel):
-    scale: dict
-    position: dict
-    rotation: dict
+logger = logging.getLogger("uvicorn.error")
+logging.basicConfig(level=logging.INFO)
 
-class AvatarInfo(BaseModel):
-    resourceId: str
-    objectData: ObjectData
-
-class SceneInfo(BaseModel):
-    resourceId: str
-    objectData: ObjectData
-
-class CareRecipientRequest(BaseModel):
-    avatar_id: str
-    scene_id: str
-    storage_links: List[str]
-
-class SaveRequest(BaseModel):
-    title: str
-    sceneInfo: SceneInfo
-    avatarsInfo: List[AvatarInfo]
 
 @app.get("/")
 def healthcheck():
+    logger.info("Health check called")
     return JSONResponse(content={"status": "healthy"}, status_code=200)
 
 
