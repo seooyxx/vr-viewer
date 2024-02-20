@@ -3,7 +3,7 @@ import json
 import urllib.request
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
@@ -44,7 +44,7 @@ class SaveRequest(BaseModel):
 
 @app.get("/")
 def healthcheck():
-    return {"status":"healthy"}
+    return JSONResponse(content={"status": "healthy"}, status_code=200)
 
 
 
