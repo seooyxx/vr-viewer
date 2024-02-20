@@ -42,9 +42,6 @@ class SaveRequest(BaseModel):
     sceneInfo: SceneInfo
     avatarsInfo: List[AvatarInfo]
 
-@app.get("/")
-async def test():
-    return {"message" : "main page"}
 
 @app.post("/care-recipient")
 async def receive_care_recipient_data(request: CareRecipientRequest):
@@ -58,6 +55,7 @@ async def receive_care_recipient_data(request: CareRecipientRequest):
         except Exception as e:
             raise HTTPException(status_code=400, detail=f"Failed to download file: {e}")
     return {"message": "Data saved successfully"}
+
 
 @app.post("/save")
 async def save_to_flutter(request: SaveRequest):
