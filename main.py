@@ -42,6 +42,10 @@ class SaveRequest(BaseModel):
     sceneInfo: SceneInfo
     avatarsInfo: List[AvatarInfo]
 
+@app.get("/")
+async def test():
+    return {"message" : "main page"}
+
 @app.post("/care-recipient")
 async def receive_care_recipient_data(request: CareRecipientRequest):
     data_folder = "./data"
